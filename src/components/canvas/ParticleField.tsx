@@ -17,10 +17,9 @@ export const ParticleField = memo(function ParticleField({
     const pointsRef = useRef<THREE.Points>(null);
 
     // Generate rich particle data
-    const [positions, colors, sizes] = useMemo(() => {
+    const [positions, colors] = useMemo(() => {
         const positions = new Float32Array(count * 3);
         const colors = new Float32Array(count * 3);
-        const sizes = new Float32Array(count);
 
         for (let i = 0; i < count; i++) {
             const i3 = i * 3;
@@ -35,12 +34,9 @@ export const ParticleField = memo(function ParticleField({
             colors[i3] = 0 + t * 0.49;      // R: 0 to 0.49
             colors[i3 + 1] = 0.83 - t * 0.6; // G: 0.83 to 0.23
             colors[i3 + 2] = 1;              // B: 1
-
-            // Varied sizes for depth
-            sizes[i] = Math.random() * 0.15 + 0.05;
         }
 
-        return [positions, colors, sizes];
+        return [positions, colors];
     }, [count, spread, depth]);
 
     // Smooth continuous rotation

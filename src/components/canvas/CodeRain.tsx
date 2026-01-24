@@ -23,7 +23,7 @@ export const CodeRain = memo(function CodeRain({ count = 50 }: CodeRainProps) {
     }, [count]);
 
     // Animate rain drops falling
-    useFrame((state) => {
+    useFrame(() => {
         if (groupRef.current) {
             groupRef.current.children.forEach((child, i) => {
                 const drop = drops[i];
