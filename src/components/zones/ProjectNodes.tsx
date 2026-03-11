@@ -13,12 +13,11 @@ export const ProjectNodes = memo(function ProjectNodes() {
 
     return (
         <group position={[0, 0, z]}>
-            {/* Section Header */}
             <Html
                 position={[0, isMobile ? 4.5 : 5, 0]}
                 center
                 transform
-                distanceFactor={isMobile ? 8 : 12}
+                distanceFactor={isMobile ? 8 : 14}
             >
                 <div className={`text-center ${isMobile ? 'w-[280px]' : 'w-[500px]'}`}>
                     <span className="text-primary font-mono text-xs tracking-widest uppercase">Portfolio</span>
@@ -35,8 +34,8 @@ export const ProjectNodes = memo(function ProjectNodes() {
 
             {/* Mobile: Vertical stacked cards */}
             {isMobile ? (
-                <Html position={[0, -0.5, 0]} center transform distanceFactor={7}>
-                    <div className="w-[260px] space-y-3">
+                <Html position={[0, -1.5, 0]} center transform distanceFactor={7}>
+                    <div className="w-[260px] space-y-4">
                         {projects.slice(0, 2).map((project) => (
                             <div key={project.id} className="p-3 rounded-xl glass">
                                 <span className="inline-block text-[9px] font-mono text-primary bg-primary/10 px-2 py-0.5 rounded border border-primary/20 mb-2">
@@ -60,7 +59,7 @@ export const ProjectNodes = memo(function ProjectNodes() {
             ) : (
                 /* Desktop: Horizontal cards */
                 projects.map((project, index) => {
-                    const xOffset = (index - 1) * 6;
+                    const xOffset = (index - 1) * 8.5;
 
                     return (
                         <Float
@@ -70,9 +69,9 @@ export const ProjectNodes = memo(function ProjectNodes() {
                             floatIntensity={0.03}
                         >
                             <Html
-                                position={[xOffset, -0.5, 0]}
+                                position={[xOffset, -2.5, 0]}
                                 transform
-                                distanceFactor={12}
+                                distanceFactor={14}
                             >
                                 <div className="w-[220px] p-5 rounded-xl glass">
                                     <span className="inline-block text-[10px] font-mono text-primary bg-primary/10 px-2 py-0.5 rounded border border-primary/20 mb-3">

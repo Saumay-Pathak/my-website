@@ -14,7 +14,6 @@ export const TimelineTunnel = memo(function TimelineTunnel() {
 
     return (
         <group position={[0, 0, z]}>
-            {/* Section Header */}
             <Html
                 position={[0, isMobile ? 4.5 : 5, 0]}
                 center
@@ -36,8 +35,8 @@ export const TimelineTunnel = memo(function TimelineTunnel() {
             >
                 <div className={`${isMobile ? 'w-[280px]' : 'w-[450px]'}`}>
                     {/* Current Experience Card */}
-                    <div className="p-4 rounded-xl glass mb-4">
-                        <div className="flex items-start justify-between mb-2">
+                    <div className="p-5 rounded-xl glass mb-4">
+                        <div className="flex items-start justify-between mb-3">
                             <div>
                                 <h3 className={`font-bold ${isMobile ? 'text-sm' : 'text-base'}`}>
                                     {experiences[currentIndex].role}

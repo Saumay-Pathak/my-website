@@ -6,10 +6,10 @@ export const zonePositions: Record<ZoneKey, { z: number }> = {
     entry: { z: 0 },
     about: { z: -80 },
     skills: { z: -160 },
-    projects: { z: -240 },
-    timeline: { z: -320 },
-    blog: { z: -400 },
-    contact: { z: -480 }
+    projects: { z: -260 },
+    timeline: { z: -340 },
+    blog: { z: -420 },
+    contact: { z: -500 }
 };
 
 export const personalInfo = {

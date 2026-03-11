@@ -84,19 +84,24 @@ export function Header() {
 
             {/* Mobile Menu Dropdown */}
             {isMenuOpen && (
-                <div className="md:hidden absolute top-full left-3 right-3 mt-2 glass rounded-xl p-2 animate-in fade-in slide-in-from-top-2 duration-200">
-                    {navItems.map((item) => (
-                        <button
-                            key={item.key}
-                            onClick={() => handleNavigate(item.key)}
-                            className={`w-full px-4 py-3 rounded-lg text-sm font-medium text-left transition-all ${currentZone === item.key
-                                    ? 'bg-primary/20 text-primary'
-                                    : 'text-gray-400 hover:text-white hover:bg-white/5'
-                                }`}
-                        >
-                            {item.label}
-                        </button>
-                    ))}
+                <div className="md:hidden absolute top-full left-4 right-4 mt-2 glass rounded-xl p-3 animate-in fade-in slide-in-from-top-2 duration-200 shadow-2xl">
+                    <div className="flex flex-col gap-1">
+                        {navItems.map((item) => (
+                            <button
+                                key={item.key}
+                                onClick={() => handleNavigate(item.key)}
+                                className={`w-full px-4 py-3.5 rounded-lg text-sm font-medium text-left transition-all flex items-center justify-between ${currentZone === item.key
+                                        ? 'bg-primary/20 text-primary border border-primary/20'
+                                        : 'text-gray-300 hover:text-white hover:bg-white/10 active:bg-white/20'
+                                    }`}
+                            >
+                                {item.label}
+                                {currentZone === item.key && (
+                                    <span className="w-1.5 h-1.5 rounded-full bg-primary animate-pulse" />
+                                )}
+                            </button>
+                        ))}
+                    </div>
 
                     {/* Mobile status */}
                     <div className="flex items-center gap-2 px-4 py-3 mt-2 border-t border-white/5">

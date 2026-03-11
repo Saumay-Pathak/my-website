@@ -3,13 +3,44 @@ import { personalInfo, services, zonePositions } from '../../data/portfolio';
 import { useWorldState } from '../../hooks/useWorldState';
 import { useZoneVisibility } from '../../hooks/useZoneVisibility';
 import { useIsMobile } from '../../hooks/useIsMobile';
-import { memo } from 'react';
+import { memo, useState, useEffect } from 'react';
 
 export const EntryGate = memo(function EntryGate() {
     const { navigateToZone } = useWorldState();
     const z = zonePositions.entry.z;
     const isVisible = useZoneVisibility(z);
     const isMobile = useIsMobile();
+
+    // Typewriter effect state
+    const [terminalLines, setTerminalLines] = useState<{text: string; color: string}[]>([]);
+    const [showCursor, setShowCursor] = useState(true);
+
+    useEffect(() => {
+        if (!isVisible || isMobile) return;
+        
+        // Reset sequence
+        setTerminalLines([]);
+        
+        const sequence = [
+            { text: '> saumay.init()', delay: 400, color: 'text-gray-300' },
+            { text: '> [OK] PHP 8.2 Engine', delay: 800, color: 'text-cyan-400' },
+            { text: '> [OK] Laravel v11', delay: 1100, color: 'text-cyan-400' },
+            { text: '> System online.', delay: 1500, color: 'text-green-400 font-bold' }
+        ];
+
+        const timeouts = sequence.map((line) => 
+            setTimeout(() => {
+                setTerminalLines(prev => [...prev, line]);
+            }, line.delay)
+        );
+
+        const cursorInterval = setInterval(() => setShowCursor(c => !c), 500);
+
+        return () => {
+            timeouts.forEach(clearTimeout);
+            clearInterval(cursorInterval);
+        };
+    }, [isVisible, isMobile]);
 
     if (!isVisible) return null;
 
@@ -45,18 +76,19 @@ export const EntryGate = memo(function EntryGate() {
                     >
                         <div className="font-mono text-xs text-green-400 p-3 bg-black/90 rounded-lg border border-green-500/30">
                             <div className="mb-2 text-gray-500 text-[10px]">saumay-pathak — zsh</div>
-                            <div className="space-y-0.5 text-[11px]">
-                                <div>&gt; saumay.init()</div>
-                                <div className="text-cyan-400">&gt; [OK] PHP 8.2 Engine</div>
-                                <div className="text-cyan-400">&gt; [OK] Laravel v11</div>
-                                <div className="text-green-400 font-bold">&gt; System online._</div>
+                            <div className="space-y-0.5 text-[11px] min-h-[72px]">
+                                {terminalLines.map((line: any, i) => (
+                                    <div key={i} className={line.color}>{line.text}</div>
+                                ))}
+                                {terminalLines.length === 4 && (
+                                    <span className={`text-green-400 font-bold ${showCursor ? 'opacity-100' : 'opacity-0'}`}>_</span>
+                                )}
                             </div>
                         </div>
                     </Html>
                 </Float>
             )}
 
-            {/* Main Hero Content */}
             <Html
                 position={isMobile ? [0, 2, 0] : [-3, 1.5, 0]}
                 transform
@@ -100,28 +132,17 @@ export const EntryGate = memo(function EntryGate() {
                             </svg>
                         </button>
                         <a
-                            href="/resume.pdf"
+                            href="/Saumay%20Pathak%20(Resume-2025).pdf"
                             target="_blank"
                             className={`glass font-bold rounded-xl flex items-center gap-2 ${isMobile ? 'px-4 py-2 text-xs' : 'px-6 py-3 text-sm'
                                 }`}
                         >
-                            Download CV
+                            View Resume
                         </a>
                     </div>
                 </div>
             </Html>
 
-            {/* Central Glowing Orb - smaller on mobile */}
-            <mesh position={[0, isMobile ? -3 : -2, -12]}>
-                <sphereGeometry args={[isMobile ? 1 : 1.5, 24, 24]} />
-                <meshBasicMaterial
-                    color="#00d4ff"
-                    transparent
-                    opacity={0.2}
-                />
-            </mesh>
-
-            {/* Services Section - simplified on mobile */}
             <Html
                 position={[0, isMobile ? -4.5 : -4, -5]}
                 transform

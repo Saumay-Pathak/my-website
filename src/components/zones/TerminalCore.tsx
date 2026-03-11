@@ -188,7 +188,7 @@ export const TerminalCore = memo(function TerminalCore() {
                 <>
                     {/* Desktop: Side by side layout */}
                     <Float speed={0.6} rotationIntensity={0.008} floatIntensity={0.03}>
-                        <Html position={[-4, 0, 0]} transform distanceFactor={12}>
+                        <Html position={[-6, 0, 0]} transform distanceFactor={12}>
                             <div className="w-[260px] space-y-3">
                                 <div className="p-4 rounded-xl glass">
                                     <h3 className="text-sm font-bold mb-3">Contact Details</h3>
@@ -233,7 +233,7 @@ export const TerminalCore = memo(function TerminalCore() {
                     </Float>
 
                     <Float speed={0.5} rotationIntensity={0.005} floatIntensity={0.02}>
-                        <Html position={[4, 0, 0]} transform distanceFactor={12}>
+                        <Html position={[6, 0, 0]} transform distanceFactor={12}>
                             <div className="w-[300px] p-4 rounded-xl glass">
                                 <h3 className="text-sm font-bold mb-3">Send a Message</h3>
 

@@ -6,7 +6,7 @@ import * as THREE from 'three';
 
 export function CameraController() {
     const { camera } = useThree();
-    const { targetZ, setCurrentZone, setIsTransitioning, setScrollProgress, setCameraZ } = useWorldState();
+    const { targetZ, setCurrentZone, setIsTransitioning, setScrollProgress, setCameraZ, navigationTrigger } = useWorldState();
     const currentZ = useRef(0);
     const targetCameraZ = useRef(0);
     const mouseX = useRef(0);
@@ -132,7 +132,7 @@ export function CameraController() {
 
     // Handle navigation to specific zone - smooth easing
     useEffect(() => {
-        if (targetZ !== currentZ.current) {
+        if (navigationTrigger > 0) {
             const startZ = currentZ.current;
             const startTime = performance.now();
             const duration = 1200; // Smooth 1.2 second transition
@@ -160,7 +160,7 @@ export function CameraController() {
             scrollVelocity.current = 0;
             requestAnimationFrame(animate);
         }
-    }, [targetZ, setIsTransitioning]);
+    }, [navigationTrigger, targetZ, setIsTransitioning]);
 
     // Main animation frame - ultra smooth
     useFrame((_, delta) => {

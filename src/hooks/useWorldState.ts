@@ -6,6 +6,7 @@ interface WorldState {
     targetZ: number;
     cameraZ: number;
     isTransitioning: boolean;
+    navigationTrigger: number;
     scrollProgress: number;
     reducedMotion: boolean;
 
@@ -23,6 +24,7 @@ export const useWorldState = create<WorldState>((set) => ({
     targetZ: 0,
     cameraZ: 0,
     isTransitioning: false,
+    navigationTrigger: 0,
     scrollProgress: 0,
     reducedMotion: false,
 
@@ -35,11 +37,12 @@ export const useWorldState = create<WorldState>((set) => ({
 
     navigateToZone: (zone) => {
         const position = zonePositions[zone];
-        set({
+        set((state) => ({
             currentZone: zone,
             targetZ: position.z,
             isTransitioning: true,
-        });
+            navigationTrigger: state.navigationTrigger + 1,
+        }));
     },
 }));
 

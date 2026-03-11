@@ -14,7 +14,6 @@ export const BlogZone = memo(function BlogZone() {
 
     return (
         <group position={[0, 0, z]}>
-            {/* Section Header */}
             <Html
                 position={[0, isMobile ? 4.5 : 5, 0]}
                 center
@@ -38,8 +37,8 @@ export const BlogZone = memo(function BlogZone() {
             >
                 <div className={`${isMobile ? 'w-[280px]' : 'w-[400px]'}`}>
                     {/* Current Blog Card */}
-                    <article className="p-4 rounded-xl glass mb-4">
-                        <div className="flex items-center gap-2 text-[10px] font-mono text-gray-500 mb-3">
+                    <article className="p-5 rounded-xl glass mb-4">
+                        <div className="flex items-center gap-2 text-[10px] font-mono text-gray-400 mb-3 border-b border-white/5 pb-2">
                             <span className="px-2 py-0.5 bg-white/5 rounded">{blogPosts[currentIndex].date}</span>
                             <span>{blogPosts[currentIndex].readTime}</span>
                         </div>

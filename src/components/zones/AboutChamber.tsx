@@ -13,7 +13,6 @@ export const AboutChamber = memo(function AboutChamber() {
 
     return (
         <group position={[0, 0, z]}>
-            {/* Section Header */}
             <Html
                 position={[0, isMobile ? 5 : 5.5, 0]}
                 center
@@ -34,7 +33,7 @@ export const AboutChamber = memo(function AboutChamber() {
                 <>
                     {/* Bio Panel */}
                     <Html position={[0, 1.5, 0]} center transform distanceFactor={7}>
-                        <div className="w-[260px] p-3 rounded-xl glass">
+                        <div className="w-[260px] p-4 rounded-xl glass">
                             <h3 className="text-xs font-bold mb-2 flex items-center gap-2">
                                 <div className="w-1 h-3 bg-primary rounded-full" />
                                 Who I Am
@@ -66,7 +65,7 @@ export const AboutChamber = memo(function AboutChamber() {
                     <Html position={[0, -4, 0]} center transform distanceFactor={9}>
                         <div className="w-[280px] text-center">
                             <h3 className="text-xs font-bold mb-2">Experience</h3>
-                            <div className="flex gap-2 overflow-x-auto pb-2">
+                            <div className="flex gap-3 overflow-x-auto pb-2 snap-x px-2">
                                 {experiences.slice(0, 2).map((exp) => (
                                     <div key={exp.id} className="p-2 rounded-lg glass text-center flex-shrink-0 w-[120px]">
                                         <div className="text-primary font-mono text-[8px]">{exp.duration.split(' – ')[0]}</div>

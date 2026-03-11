@@ -43,10 +43,13 @@ export const CodeRain = memo(function CodeRain({ count = 50 }: CodeRainProps) {
             {drops.map((drop, i) => (
                 <mesh key={i} position={[drop.x, drop.y, drop.z]}>
                     <boxGeometry args={[0.03, drop.length, 0.03]} />
-                    <meshBasicMaterial
+                    <meshStandardMaterial
                         color="#00d4ff"
                         transparent
                         opacity={drop.opacity}
+                        emissive="#00e5ff"
+                        emissiveIntensity={2.5}
+                        toneMapped={false}
                     />
                 </mesh>
             ))}

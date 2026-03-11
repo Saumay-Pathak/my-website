@@ -3,6 +3,8 @@ import { Scene } from './components/canvas/Scene';
 import { Header } from './components/ui/Header';
 import { NavIndicator } from './components/ui/NavIndicator';
 import { LoadingScreen } from './components/ui/LoadingScreen';
+import { ErrorBoundary } from './components/ErrorBoundary';
+import { CustomCursor } from './components/ui/CustomCursor';
 import { useReducedMotion } from './hooks/useReducedMotion';
 import { useWorldState } from './hooks/useWorldState';
 import { useIsMobile } from './hooks/useIsMobile';
@@ -24,7 +26,11 @@ function App() {
       {!isLoaded && <LoadingScreen onComplete={() => setIsLoaded(true)} />}
 
       {/* 3D Canvas */}
-      {isLoaded && <Scene />}
+      {isLoaded && (
+        <ErrorBoundary>
+          <Scene />
+        </ErrorBoundary>
+      )}
 
       {/* UI Overlay */}
       {isLoaded && (
@@ -54,14 +60,8 @@ function App() {
             </svg>
           </div>
 
-          {/* Keyboard Hints - Desktop only */}
-          <div className="fixed bottom-8 right-6 hidden md:flex items-center gap-4 text-xs text-gray-600 font-mono">
-            <div className="flex items-center gap-1">
-              <kbd className="px-1.5 py-0.5 bg-white/5 rounded border border-white/10">W</kbd>
-              <kbd className="px-1.5 py-0.5 bg-white/5 rounded border border-white/10">S</kbd>
-            </div>
-            <span>or scroll</span>
-          </div>
+
+          <CustomCursor />
         </div>
       )}
     </div>
