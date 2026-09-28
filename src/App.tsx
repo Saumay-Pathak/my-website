@@ -10,7 +10,7 @@ import { useWorldState } from './hooks/useWorldState';
 import { useIsMobile } from './hooks/useIsMobile';
 import './index.css';
 
-function App() {
+function App(): JSX.Element {
   const [isLoaded, setIsLoaded] = useState(false);
   const reducedMotion = useReducedMotion();
   const { setReducedMotion } = useWorldState();
